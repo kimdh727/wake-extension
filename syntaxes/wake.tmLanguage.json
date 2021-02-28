@@ -6,26 +6,117 @@
 			"include": "#keywords"
 		},
 		{
+			"include": "#constants"
+		},
+		{
+			"include": "#types"
+		},
+		{
 			"include": "#strings"
+		},
+		{
+			"include": "#numeric"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.wake",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.wake",
+					"match": "\\b(if|then|else|here|global|type|topic|subscribe|match|require|data|tuple|prim)\\b"
+				},
+				{
+					"include": "#definitions"
+				},
+				{
+					"include": "#operator-modifier"
+				},
+				{
+					"include": "#include"
+				},
+				{
+					"include": "#exception"
+				}
+			]
+		},
+		"definitions": {
+			"name": "keyword.definition.wake",
+			"match": "\\b(def|publish|target|topic)\\b"
+		},
+		"operator-modifier": {
+			"name": "keyword.operator-modifier.wake",
+			"match": "\\b(binary|unary)\\b"
+		},
+		"include": {
+			"name": "keyword.include.wake",
+			"match": "\\b(package|export|import|from)\\b"
+		},
+		"exception": {
+			"name": "keyword.exception.wake",
+			"match": "\\b(panic)\\b"
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "types.wake",
+					"match": "\\b(Boolean)\\b"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.wake",
 			"begin": "\"",
 			"end": "\"",
+			"patterns": [{
+				"name": "constant.character.escape.wake",
+				"match": "\\\\."
+			}]
+		},
+		"constants": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.wake",
-					"match": "\\\\."
+					"include": "#boolean"
+				},
+				{
+					"include": "#numeric"
 				}
 			]
+		},
+		"boolean": {
+			"name": "type.boolean.wake",
+			"match": "\\b(True|False)\\b"
+		},
+		"numeric": {
+			"patterns": [
+				{
+					"include": "#decimal"
+				},
+				{
+					"include": "#binary"
+				},
+				{
+					"include": "#octal"
+				},
+				{
+					"include": "#hexadecimal"
+				}
+			]
+		},
+		"decimal": {
+			"name": "constant.numeric.wake",
+			"match": "\\b([1-9][0-9_]*|0)(\\.[0-9]+)?([eE][\\+-]?[0-9_]+)?\\b"
+		},
+		"binary": {
+			"name": "constant.numeric.wake",
+			"match": "\\b0[bB][01_]+\\b"
+		},
+		"octal": {
+			"name": "constant.numeric.wake",
+			"match": "\\b0[0-7_]+\\b"
+		},
+		"hexadecimal": {
+			"name": "constant.numeric.wake",
+			"match": "\\b0[xX][0-9a-fA-F_]+(\\.[0-9a-fA-F_]+)?([pP][\\+-]?[0-9a-fA-F_]+)?\\b"
 		}
 	},
 	"scopeName": "source.wake"
