@@ -15,6 +15,10 @@
     "categories": [
         "Programming Languages"
     ],
+    "activationEvents": [
+        "onLanguage:wake"
+    ],
+    "main": "./client/out/extension",
     "contributes": {
         "languages": [
             {
@@ -38,11 +42,17 @@
         ]
     },
     "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -b",
+        "watch": "tsc -b -w",
+        "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
         "test": "npm-run-all test:*",
         "test:tmgrammar-test": "vscode-tmgrammar-test -s source.wake -g syntaxes/wake.tmLanguage.json -t 'tests/tmgrammar/unit/**/*.test.wake'",
         "test:tmgrammar-snap": "vscode-tmgrammar-snap -s source.wake -g syntaxes/wake.tmLanguage.json -t 'tests/tmgrammar/snap/**/*.test.wake'"
     },
-    "devDependencies": {
+    "dependencies": {
+        "@types/node": "^12.12.0",
+        "typescript": "^4.0.2",
         "vsce": "^1.93.0",
         "npm-run-all": "^4.1.5",
         "vscode-tmgrammar-test": "^0.0.11"
