@@ -16,6 +16,9 @@
 		},
 		{
 			"include": "#numeric"
+		},
+		{
+			"include": "#comments"
 		}
 	],
 	"repository": {
@@ -117,6 +120,10 @@
 		"hexadecimal": {
 			"name": "constant.numeric.wake",
 			"match": "\\b0[xX][0-9a-fA-F_]+(\\.[0-9a-fA-F_]+)?([pP][\\+-]?[0-9a-fA-F_]+)?\\b"
+		},
+		"comments": {
+			"name": "comment.line",
+			"match": "#.*"
 		}
 	},
 	"scopeName": "source.wake"
