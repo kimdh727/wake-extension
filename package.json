@@ -1,26 +1,40 @@
 {
     "name": "wake-extension",
     "displayName": "wake-extension",
-    "description": "",
+    "description": "VSCode Wake Extension",
     "version": "0.0.1",
+    "publisher": "kimdh727",
     "engines": {
         "vscode": "^1.53.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kimdh727/wake-extension.git"
     },
     "categories": [
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "wake",
-            "aliases": ["wake", "Wake"],
-            "extensions": [".wake"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "wake",
-            "scopeName": "source.wake",
-            "path": "./syntaxes/wake.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "wake",
+                "aliases": [
+                    "wake",
+                    "Wake"
+                ],
+                "extensions": [
+                    ".wake"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "wake",
+                "scopeName": "source.wake",
+                "path": "./syntaxes/wake.tmLanguage.json"
+            }
+        ]
     },
     "scripts": {
         "test": "npm-run-all test:*",
@@ -28,6 +42,7 @@
         "test:tmgrammar-snap": "vscode-tmgrammar-snap -s source.wake -g syntaxes/wake.tmLanguage.json -t 'tests/tmgrammar/snap/**/*.test.wake'"
     },
     "devDependencies": {
+        "vsce": "^1.93.0",
         "npm-run-all": "^4.1.5",
         "vscode-tmgrammar-test": "^0.0.11"
     }
