@@ -1,6 +1,6 @@
 {
     "name": "wake-extension",
-    "displayName": "wake-extension",
+    "displayName": "Wake Extension",
     "description": "VSCode Wake Extension",
     "version": "0.0.1",
     "publisher": "kimdh727",

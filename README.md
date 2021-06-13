@@ -1,4 +1,4 @@
-# WAKE extension
+# Wake Extension
 
 This is the README for "wake-extension".
 
