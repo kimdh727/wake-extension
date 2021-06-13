@@ -6,8 +6,7 @@
     { "include": "#comments"  },
     { "include": "#keywords"  },
     { "include": "#constants" },
-    { "include": "#strings"   },
-    { "include": "#numeric"   }
+    { "include": "#strings"   }
   ],
   "repository": {
     "comments": {
