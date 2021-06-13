@@ -23,4 +23,6 @@ multiline string
 
 "double quote string {escape} is avail"
 
+"double quote string \"is until string\""
+
 "%double quote percent string %{escape} and {not escape}%"

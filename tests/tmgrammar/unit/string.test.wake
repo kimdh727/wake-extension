@@ -56,6 +56,14 @@
 #                             ^^^^^^^^^ source.wake string.quoted.double.wake
 #                                      ^ source.wake string.quoted.double.wake
 >
+>"double quote string \"is until string\""
+#^ source.wake string.quoted.double.wake
+# ^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.double.wake
+#                     ^^ source.wake string.quoted.double.wake
+#                       ^^^^^^^^^^^^^^^ source.wake string.quoted.double.wake
+#                                      ^^ source.wake string.quoted.double.wake
+#                                        ^ source.wake string.quoted.double.wake
+>
 >"%double quote percent string %{escape} and {not escape}%"
 #^^ source.wake string.quoted.other.dpstr.wake
 #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake

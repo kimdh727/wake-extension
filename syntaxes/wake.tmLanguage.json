@@ -73,13 +73,17 @@
       "begin": "\"",
       "end": "\"",
       "patterns": [
-        { "include": "#escaped-dstr" }
+        { "include": "#escaped-dstr" },
+        { "include": "#escaped-dq"   }
       ]
     },
     "escaped-dstr": {
       "name": "constant.character.escape.dstr.wake",
       "begin": "{",
       "end": "}"
+    },
+    "escaped-dq": {
+      "match": "\\\\\\\""
     },
     "dpstr": {
       "name": "string.quoted.other.dpstr.wake",
