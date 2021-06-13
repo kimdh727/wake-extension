@@ -1,130 +1,167 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "wake",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#constants"
-		},
-		{
-			"include": "#types"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#numeric"
-		},
-		{
-			"include": "#comments"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [
-				{
-					"name": "keyword.control.wake",
-					"match": "\\b(if|then|else|here|global|type|topic|subscribe|match|require|data|tuple|prim)\\b"
-				},
-				{
-					"include": "#definitions"
-				},
-				{
-					"include": "#operator-modifier"
-				},
-				{
-					"include": "#include"
-				},
-				{
-					"include": "#exception"
-				}
-			]
-		},
-		"definitions": {
-			"name": "keyword.definition.wake",
-			"match": "\\b(def|publish|target|topic)\\b"
-		},
-		"operator-modifier": {
-			"name": "keyword.operator-modifier.wake",
-			"match": "\\b(binary|unary)\\b"
-		},
-		"include": {
-			"name": "keyword.include.wake",
-			"match": "\\b(package|export|import|from)\\b"
-		},
-		"exception": {
-			"name": "keyword.exception.wake",
-			"match": "\\b(panic)\\b"
-		},
-		"types": {
-			"patterns": [
-				{
-					"name": "types.wake",
-					"match": "\\b(Boolean)\\b"
-				}
-			]
-		},
-		"strings": {
-			"name": "string.quoted.double.wake",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [{
-				"name": "constant.character.escape.wake",
-				"match": "\\\\."
-			}]
-		},
-		"constants": {
-			"patterns": [
-				{
-					"include": "#boolean"
-				},
-				{
-					"include": "#numeric"
-				}
-			]
-		},
-		"boolean": {
-			"name": "type.boolean.wake",
-			"match": "\\b(True|False)\\b"
-		},
-		"numeric": {
-			"patterns": [
-				{
-					"include": "#decimal"
-				},
-				{
-					"include": "#binary"
-				},
-				{
-					"include": "#octal"
-				},
-				{
-					"include": "#hexadecimal"
-				}
-			]
-		},
-		"decimal": {
-			"name": "constant.numeric.wake",
-			"match": "\\b([1-9][0-9_]*|0)(\\.[0-9]+)?([eE][\\+-]?[0-9_]+)?\\b"
-		},
-		"binary": {
-			"name": "constant.numeric.wake",
-			"match": "\\b0[bB][01_]+\\b"
-		},
-		"octal": {
-			"name": "constant.numeric.wake",
-			"match": "\\b0[0-7_]+\\b"
-		},
-		"hexadecimal": {
-			"name": "constant.numeric.wake",
-			"match": "\\b0[xX][0-9a-fA-F_]+(\\.[0-9a-fA-F_]+)?([pP][\\+-]?[0-9a-fA-F_]+)?\\b"
-		},
-		"comments": {
-			"name": "comment.line",
-			"match": "#.*"
-		}
-	},
-	"scopeName": "source.wake"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.wake",
+  "name": "wake",
+  "patterns": [
+    { "include": "#comments"  },
+    { "include": "#keywords"  },
+    { "include": "#constants" },
+    { "include": "#strings"   },
+    { "include": "#numeric"   }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.line",
+      "match": "#.*"
+    },
+    "keywords": {
+      "patterns": [
+        { "include": "#control"           },
+        { "include": "#declaration"       },
+        { "include": "#operator"          },
+        { "include": "#operator-modifier" },
+        { "include": "#package"           }
+      ]
+    },
+    "control": {
+      "name": "keyword.control.wake",
+      "match": "\\b(publish|subscribe|prim|if|then|else|here|match|require)\\b"
+    },
+    "declaration": {
+      "name": "storage.type.wake",
+      "match": "\\b(def|tuple|data|target|type|topic)\\b"
+    },
+    "operator": {
+      "name": "keyword.operator.wake",
+      "match": "(=|:|\\\\)"
+    },
+    "operator-modifier": {
+      "name": "keyword.other.operator-modifier.wake",
+      "match": "\\b(binary|unary)\\b"
+    },
+    "package": {
+      "name": "storage.modifier.package.wake",
+      "match": "\\b(global|package|import|export|from)\\b"
+    },
+    "strings": {
+      "patterns": [
+        { "include": "#rstr"  },
+        { "include": "#sstr"  },
+        { "include": "#dpstr" },
+        { "include": "#dstr"  }
+      ]
+    },
+    "rstr": {
+      "name": "string.regexp.wake",
+      "begin": "`",
+      "end": "`",
+      "patterns": [
+        { "include": "#escaped-rstr" }
+      ]
+    },
+    "escaped-rstr": {
+      "name": "constant.character.escape.rstr.wake",
+      "begin": "\\${",
+      "end": "}"
+    },
+    "sstr": {
+      "name": "string.quoted.single.wake",
+      "begin": "'",
+      "end": "'"
+    },
+    "dstr": {
+      "name": "string.quoted.double.wake",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "include": "#escaped-dstr" }
+      ]
+    },
+    "escaped-dstr": {
+      "name": "constant.character.escape.dstr.wake",
+      "begin": "{",
+      "end": "}"
+    },
+    "dpstr": {
+      "name": "string.quoted.other.dpstr.wake",
+      "begin": "\"%",
+      "end": "%\"",
+      "patterns": [
+        { "include": "#escaped-dpstr" }
+      ]
+    },
+    "escaped-dpstr": {
+      "name": "constant.character.escape.dpstr.wake",
+      "begin": "%{",
+      "end": "}"
+    },
+    "constants": {
+      "patterns": [
+        {
+          "include": "#boolean"
+        },
+        {
+          "include": "#numeric"
+        }
+      ]
+    },
+    "boolean": {
+      "name": "type.boolean.wake",
+      "match": "\\b(True|False)\\b"
+    },
+    "numeric": {
+      "patterns": [
+        { "include": "#double"  },
+        { "include": "#integer" }
+      ]
+    },
+    "double": {
+      "patterns": [
+        { "include": "#double10"  },
+        { "include": "#double10e" },
+        { "include": "#double16"  },
+        { "include": "#double16e" }
+      ]
+    },
+    "double10": {
+      "name": "constant.numeric.double10.wake",
+      "match": "\\b([1-9][0-9_]*|0)\\.[0-9_]+([eE][\\+-]?[0-9_]+)?\\b"
+    },
+    "double10e": {
+      "name": "constant.numeric.double10e.wake",
+      "match": "\\b([1-9][0-9_]*|0)[eE][\\+-]?[0-9_]+\\b"
+    },
+    "double16": {
+      "name": "constant.numeric.double16.wake",
+      "match": "\\b0x[0-9a-fA-F_]+\\.[0-9a-fA-F_]+([pP][+-]?[0-9a-fA-F_]+)?\\b"
+    },
+    "double16e": {
+      "name": "constant.numeric.double16e.wake",
+      "match": "\\b0x[0-9a-fA-F_]+[pP][+-]?[0-9a-fA-F_]+\\b"
+    },
+    "integer": {
+      "patterns": [
+        { "include": "#dec" },
+        { "include": "#oct" },
+        { "include": "#hex" },
+        { "include": "#bin" }
+      ]
+    },
+    "dec": {
+      "name": "constant.numeric.dec.wake",
+      "match": "\\b[1-9][0-9_]*\\b"
+    },
+    "oct": {
+      "name": "constant.numeric.oct.wake",
+      "match": "\\b0[0-7_]*\\b"
+    },
+    "hex": {
+      "name": "constant.numeric.hex.wake",
+      "match": "\\b0x[0-9a-fA-F_]+\\b"
+    },
+    "bin": {
+      "name": "constant.numeric.bin.wake",
+      "match": "\\b0b[01_]+\\b"
+    }
+  }
 }
