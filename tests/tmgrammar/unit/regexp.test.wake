@@ -1,0 +1,25 @@
+# SYNTAX TEST "source.wake"
+
+>`regexp`
+#^ source.wake string.regexp.wake
+# ^^^^^^ source.wake string.regexp.wake
+#       ^ source.wake string.regexp.wake
+>
+>`[0-9]*`
+#^ source.wake string.regexp.wake
+# ^^^^^^ source.wake string.regexp.wake
+#       ^ source.wake string.regexp.wake
+>
+>`\$not escape`
+#^ source.wake string.regexp.wake
+# ^^^^^^^^^^^^ source.wake string.regexp.wake
+#             ^ source.wake string.regexp.wake
+>
+>`regexp ${escape}`
+#^ source.wake string.regexp.wake
+# ^^^^^^^ source.wake string.regexp.wake
+#        ^^ source.wake string.regexp.wake constant.character.escape.rstr.wake
+#          ^^^^^^ source.wake string.regexp.wake constant.character.escape.rstr.wake
+#                ^ source.wake string.regexp.wake constant.character.escape.rstr.wake
+#                 ^ source.wake string.regexp.wake
+>

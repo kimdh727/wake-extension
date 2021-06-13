@@ -1,0 +1,26 @@
+'single quote string'
+
+'
+multiline string
+is avail
+'
+
+'single quote string not support {escape}'
+
+"double quote string"
+
+"
+multiline string
+is avail
+"
+
+"%double quote percent string%"
+
+"%
+also support
+multiline string
+%"
+
+"double quote string {escape} is avail"
+
+"%double quote percent string %{escape} and {not escape}%"

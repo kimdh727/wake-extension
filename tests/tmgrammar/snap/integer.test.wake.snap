@@ -1,0 +1,21 @@
+>0
+#^ source.wake constant.numeric.oct.wake
+>
+>1234
+#^^^^ source.wake constant.numeric.dec.wake
+>1234_5678
+#^^^^^^^^^ source.wake constant.numeric.dec.wake
+>0123
+#^^^^ source.wake constant.numeric.oct.wake
+>0x1234_abcd_EF00
+#^^^^^^^^^^^^^^^^ source.wake constant.numeric.hex.wake
+>0b0011_1010
+#^^^^^^^^^^^ source.wake constant.numeric.bin.wake
+>
+>0x1234FAIL
+#^^^^^^^^^^^ source.wake
+>0b0123
+#^^^^^^^ source.wake
+>09876
+#^^^^^^ source.wake
+>
