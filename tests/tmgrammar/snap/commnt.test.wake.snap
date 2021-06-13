@@ -1,0 +1,8 @@
+># Wake SUPPORT Only Line Comment
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake comment.line
+>
+># This is Comment
+#^^^^^^^^^^^^^^^^^ source.wake comment.line
+>This is not Comment
+#^^^^^^^^^^^^^^^^^^^^ source.wake
+>

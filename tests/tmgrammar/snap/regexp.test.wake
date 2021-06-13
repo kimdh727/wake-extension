@@ -1,0 +1,7 @@
+`regexp`
+
+`[0-9]*`
+
+`\$not escape`
+
+`regexp ${escape}`

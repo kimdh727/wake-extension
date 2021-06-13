@@ -1,0 +1,61 @@
+# SYNTAX TEST "source.wake"
+
+>def
+#^^^ source.wake storage.type.wake
+>tuple
+#^^^^^ source.wake storage.type.wake
+>data
+#^^^^ source.wake storage.type.wake
+>global
+#^^^^^^ source.wake storage.modifier.package.wake
+>target
+#^^^^^^ source.wake storage.type.wake
+>publish
+#^^^^^^^ source.wake keyword.control.wake
+>subscribe
+#^^^^^^^^^ source.wake keyword.control.wake
+>prim
+#^^^^ source.wake keyword.control.wake
+>if
+#^^ source.wake keyword.control.wake
+>then
+#^^^^ source.wake keyword.control.wake
+>else
+#^^^^ source.wake keyword.control.wake
+>here
+#^^^^ source.wake keyword.control.wake
+>match
+#^^^^^ source.wake keyword.control.wake
+>require
+#^^^^^^^ source.wake keyword.control.wake
+>package
+#^^^^^^^ source.wake storage.modifier.package.wake
+>import
+#^^^^^^ source.wake storage.modifier.package.wake
+>export
+#^^^^^^ source.wake storage.modifier.package.wake
+>from
+#^^^^ source.wake storage.modifier.package.wake
+>type
+#^^^^ source.wake storage.type.wake
+>topic
+#^^^^^ source.wake storage.type.wake
+>unary
+#^^^^^ source.wake keyword.other.operator-modifier.wake
+>binary
+#^^^^^^ source.wake keyword.other.operator-modifier.wake
+>\
+#^ source.wake keyword.operator.wake
+>=
+#^ source.wake keyword.operator.wake
+>:
+#^ source.wake keyword.operator.wake
+>(
+#^^ source.wake
+>)
+#^^ source.wake
+>{
+#^^ source.wake
+>}
+#^^ source.wake
+>

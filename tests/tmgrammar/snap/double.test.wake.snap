@@ -1,0 +1,65 @@
+>0.0
+#^^^ source.wake constant.numeric.double10.wake
+>
+>0.1234
+#^^^^^^ source.wake constant.numeric.double10.wake
+>0.1234_7890
+#^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>0.1234e1234_7890
+#^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>0.1234e+1234_7890
+#^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>0.1234e-1234_7890
+#^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>1.1234
+#^^^^^^ source.wake constant.numeric.double10.wake
+>1.1234_7890
+#^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>1_2345.1234e1234_7890
+#^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>1_2345.1234e+1234_7890
+#^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>1_2345.1234e-1234_7890
+#^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10.wake
+>
+>0e1234_7890
+#^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>0e+1234_7890
+#^^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>0e-1234_7890
+#^^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>1_2345e1234_7890
+#^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>1_2345e+1234_7890
+#^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>1_2345e-1234_7890
+#^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double10e.wake
+>
+>0x1234_abcd_00ef.1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efp1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efp+1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efp-1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efP1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efP+1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>0x1234_abcd_00ef.1234_abcd_00efP-1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16.wake
+>
+>0x1234_abcd_00efp1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>0x1234_abcd_00efp+1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>0x1234_abcd_00efp-1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>0x1234_abcd_00efP1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>0x1234_abcd_00efP+1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>0x1234_abcd_00efP-1234_abcd_00ef
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake constant.numeric.double16e.wake
+>

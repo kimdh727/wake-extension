@@ -1,0 +1,65 @@
+>'single quote string'
+#^ source.wake string.quoted.single.wake
+# ^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.single.wake
+#                    ^ source.wake string.quoted.single.wake
+>
+>'
+#^ source.wake string.quoted.single.wake
+>multiline string
+#^^^^^^^^^^^^^^^^^ source.wake string.quoted.single.wake
+>is avail
+#^^^^^^^^^ source.wake string.quoted.single.wake
+>'
+#^ source.wake string.quoted.single.wake
+>
+>'single quote string not support {escape}'
+#^ source.wake string.quoted.single.wake
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.single.wake
+#                                         ^ source.wake string.quoted.single.wake
+>
+>"double quote string"
+#^ source.wake string.quoted.double.wake
+# ^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.double.wake
+#                    ^ source.wake string.quoted.double.wake
+>
+>"
+#^ source.wake string.quoted.double.wake
+>multiline string
+#^^^^^^^^^^^^^^^^^ source.wake string.quoted.double.wake
+>is avail
+#^^^^^^^^^ source.wake string.quoted.double.wake
+>"
+#^ source.wake string.quoted.double.wake
+>
+>"%double quote percent string%"
+#^^ source.wake string.quoted.other.dpstr.wake
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake
+#                             ^^ source.wake string.quoted.other.dpstr.wake
+>
+>"%
+#^^ source.wake string.quoted.other.dpstr.wake
+>also support
+#^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake
+>multiline string
+#^^^^^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake
+>%"
+#^^ source.wake string.quoted.other.dpstr.wake
+>
+>"double quote string {escape} is avail"
+#^ source.wake string.quoted.double.wake
+# ^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.double.wake
+#                     ^ source.wake string.quoted.double.wake constant.character.escape.dstr.wake
+#                      ^^^^^^ source.wake string.quoted.double.wake constant.character.escape.dstr.wake
+#                            ^ source.wake string.quoted.double.wake constant.character.escape.dstr.wake
+#                             ^^^^^^^^^ source.wake string.quoted.double.wake
+#                                      ^ source.wake string.quoted.double.wake
+>
+>"%double quote percent string %{escape} and {not escape}%"
+#^^ source.wake string.quoted.other.dpstr.wake
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake
+#                              ^^ source.wake string.quoted.other.dpstr.wake constant.character.escape.dpstr.wake
+#                                ^^^^^^ source.wake string.quoted.other.dpstr.wake constant.character.escape.dpstr.wake
+#                                      ^ source.wake string.quoted.other.dpstr.wake constant.character.escape.dpstr.wake
+#                                       ^^^^^^^^^^^^^^^^^ source.wake string.quoted.other.dpstr.wake
+#                                                        ^^ source.wake string.quoted.other.dpstr.wake
+>
