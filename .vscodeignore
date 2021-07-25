@@ -3,6 +3,7 @@
 .gitignore
 vsc-extension-quickstart.md
 
-src
+client/src
+server/src
 
 tests/**
