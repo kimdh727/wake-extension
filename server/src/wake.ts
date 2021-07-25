@@ -56,7 +56,8 @@ export class WorkspaceBody implements HasProgramBody {
   }
 }
 
-export function sourceToRange(source: string[], start: number, end: number): Range {
+function sourceToRange(source: string[], start: number, end: number): Range {
+
   end -= start;
 
   let startLine = 0;
@@ -73,7 +74,7 @@ export function sourceToRange(source: string[], start: number, end: number): Ran
     }
   }
 
-  startCharacter = start - (Buffer.byteLength(source[startLine], 'utf-8') - source[startLine].length);
+  startCharacter = countChar(source[startLine], start);
 
   for (let i = startLine; i < source.length; i++) {
     if (start + end - (Buffer.byteLength(source[i], 'utf-8') + 1) >= 0) {
@@ -85,12 +86,30 @@ export function sourceToRange(source: string[], start: number, end: number): Ran
   }
 
   endLine += startLine;
-  endCharacter = start + end - (Buffer.byteLength(source[endLine], 'utf-8') - source[endLine].length);
+  endCharacter = countChar(source[endLine], start + end);
 
   return Range.create(startLine, startCharacter, endLine, endCharacter);
 }
 
+function countChar(str: string, num: number): number {
+
+  let index = 0;
+
+  if (str.length == Buffer.byteLength(str, 'utf-8')) {
+    return num;
+  } else {
+    while (num != 0) {
+      if (num < 0) console.error("DO NOT REACH");
+      num -= Buffer.byteLength(str.charAt(index), 'utf-8');
+      index++;
+    }
+  }
+
+  return index
+}
+
 export function runWakeHtml(): any {
+
   const wakeHtml = spawnSync('wake', ['--html'], { maxBuffer: 0 });
 	const err = wakeHtml.stderr.toString();
 	let out = wakeHtml.stdout.toString();

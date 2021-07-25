@@ -2,7 +2,7 @@
     "name": "wake-extension",
     "displayName": "Wake Extension",
     "description": "VSCode Wake Extension",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "kimdh727",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
