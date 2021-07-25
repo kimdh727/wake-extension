@@ -1,0 +1,9 @@
+{
+  "engines": {
+    "vscode": "^1.53.0"
+  },
+  "dependencies": {
+    "@types/vscode": "^1.53.0",
+    "vscode-languageclient": "^7.0.0"
+  }
+}

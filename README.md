@@ -10,6 +10,8 @@ This is the README for "wake-extension".
 
 ## Release Notes
 
+### 0.0.3
+* Definition Provider
 ### 0.0.1
 * Syntax Highlight
   * String, Integer, Double, Keywords, Comment

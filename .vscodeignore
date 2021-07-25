@@ -3,4 +3,6 @@
 .gitignore
 vsc-extension-quickstart.md
 
+src
+
 tests/**
