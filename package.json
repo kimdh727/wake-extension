@@ -2,7 +2,7 @@
     "name": "wake-extension",
     "displayName": "Wake Extension",
     "description": "VSCode Wake Extension",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "kimdh727",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
@@ -50,7 +50,7 @@
         "test:tmgrammar-test": "vscode-tmgrammar-test -s source.wake -g syntaxes/wake.tmLanguage.json -t 'tests/tmgrammar/unit/**/*.test.wake'",
         "test:tmgrammar-snap": "vscode-tmgrammar-snap -s source.wake -g syntaxes/wake.tmLanguage.json -t 'tests/tmgrammar/snap/**/*.test.wake'"
     },
-    "dependencies": {
+    "devDependencies": {
         "@types/node": "^12.12.0",
         "typescript": "^4.0.2",
         "vsce": "^1.93.0",

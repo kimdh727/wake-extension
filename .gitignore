@@ -3,5 +3,3 @@ package-lock.json
 out
 node_modules
 *.vsix
-
-package-lock.json
