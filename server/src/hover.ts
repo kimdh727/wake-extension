@@ -29,7 +29,7 @@ function getBody(body: ProgramBody[], p: Position): ProgramBody | undefined {
     if (include(pb.range, p)) {
       if (pb.body.length) {
         return getBody(pb.body, p);
-      } else if (pb.target) {
+      } else {
         return pb;
       }
     }
