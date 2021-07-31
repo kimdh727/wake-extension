@@ -4,7 +4,7 @@ import {
 	ProposedFeatures,
 	InitializeParams,
 	TextDocumentSyncKind,
-	InitializeResult,
+	InitializeResult
 } from 'vscode-languageserver/node';
 
 import {
@@ -16,6 +16,7 @@ import {
 	htmlToWakeDocument
 } from './wake'
 import { definitionHandler } from './definition'
+import { hoverHandler } from './hover';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -36,9 +37,12 @@ connection.onInitialize((params: InitializeParams) => {
 	const result: InitializeResult = {
 		capabilities: {
 			textDocumentSync: TextDocumentSyncKind.Incremental,
-			definitionProvider: true
+			definitionProvider: true,
+			hoverProvider: true
 		}
 	};
+
+
 	if (hasWorkspaceFolderCapability) {
 		result.capabilities.workspace = {
 			workspaceFolders: {
@@ -79,6 +83,11 @@ documents.onDidSave((e) => {
 connection.onDefinition(handler => {
 	return definitionHandler(handler, wakedoc);
 })
+
+connection.onHover(handler => {
+	return hoverHandler(handler, wakedoc);
+})
+
 // Make the text document manager listen on the connection
 // for open, change and close text document events
 documents.listen(connection);
