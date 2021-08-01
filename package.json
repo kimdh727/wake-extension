@@ -39,6 +39,12 @@
                 "scopeName": "source.wake",
                 "path": "./syntaxes/wake.tmLanguage.json"
             }
+        ],
+        "commands": [
+            {
+                "command": "wakeExtension.wakePath",
+                "title": "Set Wake Path"
+            }
         ]
     },
     "scripts": {

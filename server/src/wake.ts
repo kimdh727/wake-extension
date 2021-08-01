@@ -1,6 +1,9 @@
-import { spawnSync } from "child_process";
+import { exec, spawnSync } from "child_process";
+import { dirname } from "path";
 import { pathToFileURL } from "url";
 import { Range, Location } from "vscode-languageserver";
+
+let wake: string = 'wake';
 
 export class WakeDocument {
   readonly type: string = "Workspace";
@@ -110,7 +113,7 @@ function countChar(str: string, num: number): number {
 
 export function runWakeHtml(): any {
 
-  const wakeHtml = spawnSync('wake', ['--html'], { maxBuffer: 0 });
+  const wakeHtml = spawnSync(wake, ['--html'], { maxBuffer: 0 });
 	const err = wakeHtml.stderr.toString();
 	let out = wakeHtml.stdout.toString();
 
@@ -191,4 +194,19 @@ export function htmlToSource(json: any, url: string): string[] {
     console.error("DO NOT REACH");
 
   return result[0].source.split(RegExp('\\n'));
+}
+
+export function getWakePath() {
+  exec('which wake', function(err, stdout, stderr) {
+    if (err) {
+      console.error(err);
+    } else {
+      wake = dirname(stdout);
+      wake += '/wake'
+    }
+  });
+}
+
+export function setWakePath(wakePath: string) {
+  wake = wakePath;
 }

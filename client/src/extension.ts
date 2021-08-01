@@ -1,9 +1,11 @@
+import * as fs from 'fs';
 import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import { workspace, ExtensionContext, window, commands } from 'vscode';
 
 import {
   LanguageClient,
   LanguageClientOptions,
+  RequestType,
   ServerOptions,
   TransportKind
 } from 'vscode-languageclient/node';
@@ -16,6 +18,8 @@ export function activate(context: ExtensionContext) {
   // The debug options for the server
   // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
   let debugOptions = { execArgv: ['--nolazy', '--inspect=6009'] };
+
+  commands.registerCommand('wakeExtension.wakePath', setWakePath)
 
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
@@ -48,6 +52,13 @@ export function activate(context: ExtensionContext) {
 
   // Start the client. This will also launch the server
   client.start();
+
+  // TODO
+  // client.onReady().then ((value) => {
+  //   client.onRequest('wakePath', (handler) => {
+  //     return wakePathInputBox(value);
+  //   })
+  // })
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -55,4 +66,26 @@ export function deactivate(): Thenable<void> | undefined {
     return undefined;
   }
   return client.stop();
+}
+
+async function wakePathInputBox(defpath?: string): Promise<string|undefined> {
+
+  defpath ? defpath : defpath = '/usr/local/bin';
+  let result: string;
+
+  await window.showInputBox({title: 'wake path', value: defpath, placeHolder: 'enter wake path', ignoreFocusOut: true}).then(
+    value => {
+      const stat = fs.lstatSync(value);
+      if (stat.isDirectory()) result =  value + '/wake';
+      else if (stat.isFile()) result = value;
+      else console.error('Invalid Input');
+    }
+  )
+
+  return result;
+}
+
+async function setWakePath() {
+
+  client.sendRequest(new RequestType('wakePath'), await wakePathInputBox())
 }
