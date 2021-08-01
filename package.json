@@ -2,7 +2,7 @@
     "name": "wake-extension",
     "displayName": "Wake Extension",
     "description": "VSCode Wake Extension",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "kimdh727",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
@@ -43,7 +43,8 @@
         "commands": [
             {
                 "command": "wakeExtension.wakePath",
-                "title": "Set Wake Path"
+                "title": "Wake Path Setting",
+                "category": "wake-extension"
             }
         ]
     },
