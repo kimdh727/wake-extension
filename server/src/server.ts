@@ -13,7 +13,9 @@ import {
 import {
 	WakeDocument,
 	runWakeHtml,
-	htmlToWakeDocument
+	htmlToWakeDocument,
+	getWakePath,
+	setWakePath
 } from './wake'
 import { definitionHandler } from './definition'
 import { hoverHandler } from './hover';
@@ -28,6 +30,9 @@ let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 let hasWorkspaceFolderCapability: boolean = false;
 
 connection.onInitialize((params: InitializeParams) => {
+
+	getWakePath();
+
 	let capabilities = params.capabilities;
 
 	hasWorkspaceFolderCapability = !!(
@@ -41,7 +46,6 @@ connection.onInitialize((params: InitializeParams) => {
 			hoverProvider: true
 		}
 	};
-
 
 	if (hasWorkspaceFolderCapability) {
 		result.capabilities.workspace = {
@@ -68,6 +72,7 @@ connection.onDidChangeWatchedFiles(_change => {
 
 let wakedoc: WakeDocument = new WakeDocument;
 
+// TODO: Async
 documents.onDidOpen((e) => {
 	const json = runWakeHtml();
 
@@ -88,9 +93,18 @@ connection.onHover(handler => {
 	return hoverHandler(handler, wakedoc);
 })
 
+connection.onRequest('wakePath', (handler: string) => {
+	setWakePath(handler);
+})
+
 // Make the text document manager listen on the connection
 // for open, change and close text document events
 documents.listen(connection);
 
 // Listen on the connection
 connection.listen();
+
+// TODO
+// connection.sendRequest(new RequestType('wakePath'), 'abc').then((value) => {
+// 	console.log(value);
+// })
