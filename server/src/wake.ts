@@ -4,11 +4,16 @@ import { pathToFileURL } from "url";
 import { Range, Location } from "vscode-languageserver";
 
 let wake: string = 'wake';
-
 export class WakeDocument {
   readonly type: string = "Workspace";
   body: WorkspaceBody[] = [];
+
+  clear(): void {
+    this.body = [];
+  }
 }
+
+export let wakedoc: WakeDocument = new WakeDocument;
 
 export interface HasProgramBody {
   type: string;
@@ -114,9 +119,15 @@ function countChar(str: string, num: number): number {
 export function runWakeHtml(): any {
 
   const wakeHtml = spawnSync(wake, ['--html'], { maxBuffer: 0 });
+  if (wakeHtml.error) {
+    console.error(wakeHtml.error);
+    return;
+  }
+
 	const err = wakeHtml.stderr.toString();
 	let out = wakeHtml.stdout.toString();
 
+  // TODO: send diagnostics
 	if (err.includes('>>> Aborting without execution <<<') ||
       !out.includes('<script type="wake">')) {
 		console.error(err);
@@ -164,6 +175,13 @@ export function htmlToWakeDocument(json: any, doc: WakeDocument): WakeDocument {
   return doc
 }
 
+export function parseWake () {
+	const json = runWakeHtml();
+
+	if (json) wakedoc = htmlToWakeDocument(json, wakedoc);
+	else wakedoc.clear();
+}
+
 export function htmlToProgramBody(json: any, jsonbody: any, body: HasProgramBody, source: string[]): void {
 
   for (const pb of jsonbody) {
@@ -201,12 +219,14 @@ export function getWakePath() {
     if (err) {
       console.error(err);
     } else {
-      wake = dirname(stdout);
-      wake += '/wake'
+      const wakePath = dirname(stdout) + '/wake';
+      setWakePath(wakePath);
     }
   });
 }
 
 export function setWakePath(wakePath: string) {
   wake = wakePath;
+  console.info("setting wake binary path: " + wakePath);
+  parseWake();
 }

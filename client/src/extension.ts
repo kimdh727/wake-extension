@@ -76,7 +76,7 @@ async function wakePathInputBox(defpath?: string): Promise<string|undefined> {
   await window.showInputBox({title: 'wake path', value: defpath, placeHolder: 'enter wake path', ignoreFocusOut: true}).then(
     value => {
       const stat = fs.lstatSync(value);
-      if (stat.isDirectory()) result =  value + '/wake';
+      if (stat.isDirectory()) result = value + '/wake';
       else if (stat.isFile()) result = value;
       else console.error('Invalid Input');
     }
@@ -89,3 +89,20 @@ async function setWakePath() {
 
   client.sendRequest(new RequestType('wakePath'), await wakePathInputBox())
 }
+
+
+workspace.onDidChangeConfiguration(listener => {
+
+  const configs = workspace.getConfiguration("wake-extension");
+
+  let wakePath: string = configs.get("wake-path")
+  if (wakePath) {
+    const wakePathStat = fs.lstatSync(wakePath);
+
+    if (wakePathStat.isDirectory()) wakePath = wakePath + '/wake';
+    else if (wakePathStat.isFile()) wakePath = wakePath;
+    else console.error('Invalid Input');
+
+    client.sendRequest(new RequestType('wakePath'), wakePath);
+  }
+})

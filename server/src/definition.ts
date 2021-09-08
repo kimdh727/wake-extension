@@ -9,7 +9,7 @@ export function definitionHandler(handler: DefinitionParams, doc: WakeDocument):
 
   const body = doc.body.filter(body => body.filename == uri);
 
-  body.length == 1 || console.error('Not found file');
+  if (body.length != 1) return undefined;
 
   include(body[0].range, position) || console.error('Invalid data');
 
