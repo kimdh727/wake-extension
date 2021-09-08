@@ -1,3 +1,4 @@
+import { assert } from "console";
 import { Hover, HoverParams, Position } from "vscode-languageserver";
 import { include } from "./util";
 import { ProgramBody, WakeDocument } from "./wake";
@@ -9,7 +10,7 @@ export function hoverHandler(handler: HoverParams, doc: WakeDocument): Hover | u
 
   const body = doc.body.filter(body => body.filename == uri);
 
-  body.length == 1 || console.error('Not found file');
+  if (body.length != 1) return undefined;
 
   include(body[0].range, position) || console.error('Invalid data');
 

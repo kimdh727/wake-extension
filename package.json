@@ -46,6 +46,18 @@
                 "title": "Wake Path Setting",
                 "category": "wake-extension"
             }
+        ],
+        "configuration":[
+            {
+                "title": "Wake Extension",
+                "properties": {
+                    "wake-extension.wake-path": {
+                        "type": "string",
+                        "default": "",
+                        "markdownDescription": "Set `wake` binary path"
+                    }
+                }
+            }
         ]
     },
     "scripts": {

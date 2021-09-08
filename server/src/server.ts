@@ -15,10 +15,13 @@ import {
 	runWakeHtml,
 	htmlToWakeDocument,
 	getWakePath,
-	setWakePath
+	setWakePath,
+	wakedoc,
+	parseWake
 } from './wake'
 import { definitionHandler } from './definition'
 import { hoverHandler } from './hover';
+import { WorkspaceFoldersFeature } from 'vscode-languageserver/lib/common/workspaceFolders';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -27,14 +30,16 @@ let connection = createConnection(ProposedFeatures.all);
 // Create a simple text document manager.
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
+let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 
 connection.onInitialize((params: InitializeParams) => {
 
-	getWakePath();
-
 	let capabilities = params.capabilities;
 
+	hasConfigurationCapability = !!(
+		capabilities.workspace && !!capabilities.workspace.configuration
+	);
 	hasWorkspaceFolderCapability = !!(
 		capabilities.workspace && !!capabilities.workspace.workspaceFolders
 	);
@@ -58,6 +63,19 @@ connection.onInitialize((params: InitializeParams) => {
 });
 
 connection.onInitialized(() => {
+
+	if (hasConfigurationCapability) {
+		const configs = connection.workspace.getConfiguration("wake-extension")
+
+		configs.then(value => {
+			let wakePath = value['wake-path'];
+			if (wakePath != "") setWakePath(wakePath);
+			else getWakePath();
+		})
+	} else {
+		getWakePath();
+	}
+
 	if (hasWorkspaceFolderCapability) {
 		connection.workspace.onDidChangeWorkspaceFolders(_event => {
 			connection.console.log('Workspace folder change event received.');
@@ -70,19 +88,13 @@ connection.onDidChangeWatchedFiles(_change => {
 	connection.console.log('We received an file change event');
 });
 
-let wakedoc: WakeDocument = new WakeDocument;
-
-// TODO: Async
-documents.onDidOpen((e) => {
-	const json = runWakeHtml();
-
-	wakedoc = htmlToWakeDocument(json, wakedoc);
+// TODO: Async ??
+documents.onDidOpen ((e) => {
+	// parseWake();
 })
 
 documents.onDidSave((e) => {
-	const json = runWakeHtml();
-
-	wakedoc = htmlToWakeDocument(json, wakedoc);
+	parseWake();
 })
 
 connection.onDefinition(handler => {
