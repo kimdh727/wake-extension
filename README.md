@@ -2,6 +2,8 @@
 
 This is the README for "wake-extension".
 
+Recommend: https://github.com/sifive/wake/tree/master/extensions/vscode
+
 ## Features
 
 * Configuration
